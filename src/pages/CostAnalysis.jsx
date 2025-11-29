@@ -66,7 +66,6 @@ function CostAnalysis() {
     <div className="h-full bg-gray-50 overflow-auto">
       <div className="p-6">
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-5 gap-4 mb-6">
           <div className="bg-indigo-50 p-4 rounded-lg">
             <h3 className="text-xs text-gray-500 mb-1">Profitability %</h3>
@@ -104,7 +103,6 @@ function CostAnalysis() {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="border-b mb-6">
           <div className="flex gap-8">
             <button
@@ -130,10 +128,8 @@ function CostAnalysis() {
           </div>
         </div>
 
-        {/* MAIN GRID */}
         <div className="flex flex-wrap gap-6 mb-6">
 
-          {/* Revenue Chart */}
           <div className="flex-1 min-w-[300px] bg-white p-5 rounded-lg shadow">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-sm font-medium text-gray-700">Revenue</h3>
@@ -153,7 +149,6 @@ function CostAnalysis() {
             </ResponsiveContainer>
           </div>
 
-          {/* Sources Pie */}
           <div className="flex-1 min-w-[300px] bg-white p-5 rounded-lg shadow">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-sm font-medium text-gray-700">Sources</h3>
@@ -163,7 +158,6 @@ function CostAnalysis() {
             </div>
 
             <div className="flex">
-              {/* Legend */}
               <div className="block justify-center gap-3 mt-5">
                 {sourcesData.map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2 mt-5">
@@ -186,7 +180,6 @@ function CostAnalysis() {
             </div>
           </div>
 
-          {/* Revenue Stats */}
           <div className="flex-1 min-w-[300px] space-y-3">
             <div className="bg-indigo-50 p-4 rounded-lg">
               <p className="text-xs text-gray-500 mb-1">Annual Revenue FY'23</p>
@@ -214,13 +207,10 @@ function CostAnalysis() {
           </div>
         </div>
 
-        {/* SECOND GRID */}
         <div className="flex flex-wrap gap-6 mb-6">
 
-          {/* Left Side Charts */}
           <div className="flex flex-col gap-6 flex-1 min-w-[350px]">
 
-            {/* Ticket Sales */}
             <div className="bg-white p-5 rounded-lg shadow">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-sm font-semibold text-gray-800">Ticket Sales</h3>
@@ -252,7 +242,6 @@ function CostAnalysis() {
               </ResponsiveContainer>
             </div>
 
-            {/* Ads Revenue */}
             <div className="bg-white p-5 rounded-lg shadow">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-sm font-semibold text-gray-800">Ads Revenue</h3>
@@ -273,7 +262,6 @@ function CostAnalysis() {
             </div>
           </div>
 
-          {/* Ticket Revenue Table */}
           <div className="flex-1 min-w-[350px] bg-white rounded-lg shadow">
             <div className="p-4 border-b">
               <div className="flex justify-between items-center">

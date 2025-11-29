@@ -13,7 +13,6 @@ function HallManagement() {
       <div className="p-4 md:p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Hall Management</h1>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-sm text-gray-500 mb-2">Running Screens</h3>
@@ -34,7 +33,6 @@ function HallManagement() {
           </div>
         </div>
 
-        {/* Schedule Table */}
         <div className="bg-white rounded-lg shadow">
           <div className="p-4 border-b border-gray-200">
             <h2 className="text-sm text-gray-500">15 September '23, Friday</h2>
@@ -74,7 +72,6 @@ function HallManagement() {
             </table>
           </div>
 
-          {/* Action Buttons */}
           <div className="p-4 flex justify-end gap-3">
             <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
               <Download className="w-4 h-4" />

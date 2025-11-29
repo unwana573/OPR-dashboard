@@ -80,7 +80,6 @@ function PricingStrategy() {
     <div className="h-full bg-gray-50 overflow-auto">
       <div className="p-4 md:p-6">
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-sm text-gray-500 mb-2">Upcoming Movies</h3>
@@ -109,7 +108,6 @@ function PricingStrategy() {
           </div>
         </div>
 
-        {/* Date Selector */}
         <div className="bg-white rounded-lg shadow mb-6 p-4">
           <div className="flex items-center gap-2">
             <button className="p-2 hover:bg-gray-100 rounded">
@@ -133,7 +131,6 @@ function PricingStrategy() {
                     </div>
                   </button>
 
-                  {/* Day outside background */}
                   <div className="text-xs text-gray-600 mt-1">{d.day}</div>
                 </div>
               ))}
@@ -150,7 +147,6 @@ function PricingStrategy() {
           </div>
         </div>
 
-        {/* Pricing Table */}
         <div className="bg-white rounded-lg shadow">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -212,7 +208,6 @@ function PricingStrategy() {
             </table>
           </div>
 
-          {/* Action Buttons */}
           <div className="p-4 flex justify-end gap-3">
             {isEditing ? (
               <>
