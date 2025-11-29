@@ -52,11 +52,10 @@ function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="flex flex-col gap-4">
+    <div className="min-h-screen bg-[#F7F8FA] p-5">
+      <div className="flex flex-col gap-6">
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-
           {[
             { title: "Gross Revenue", value: "₹1,13,458", trend: "up" },
             { title: "Gross Profit", value: "₹13,458", trend: "up" },
@@ -65,11 +64,11 @@ function Dashboard() {
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all flex flex-col gap-2"
+              className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all"
             >
-              <p className="text-xs text-gray-500">{item.title}</p>
-              <h2 className="text-2xl font-bold text-gray-800">{item.value}</h2>
-              <div className="flex items-center text-xs">
+              <p className="text-[11px] text-gray-500">{item.title}</p>
+              <h2 className="text-[22px] font-bold text-gray-900">{item.value}</h2>
+              <div className="flex items-center text-xs mt-1">
                 <span className="text-gray-500">Weekly</span>
                 {item.trend === "up" ? (
                   <TrendingUp className="w-4 h-4 text-green-600 ml-auto" />
@@ -79,29 +78,28 @@ function Dashboard() {
               </div>
             </div>
           ))}
-
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
-          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm">Profitability</h3>
             <p className="text-xs text-gray-500 mb-2">Sept 2023</p>
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={profitabilityData}>
-                  <CartesianGrid strokeDasharray="3 3" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="day" tick={{ fontSize: 10 }} />
                   <YAxis tick={{ fontSize: 10 }} />
                   <Tooltip />
                   <Bar dataKey="revenue" fill="#3b82f6" radius={[6, 6, 0, 0]} />
-                  <Bar dataKey="expense" fill="#9ca3af" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="expense" fill="#d1d5db" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Expenses</h3>
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
@@ -123,7 +121,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm">Total Expenses</h3>
             <p className="text-xl font-bold text-gray-800">₹83,458</p>
             <p className="text-xs text-gray-500 mb-2">Weekly</p>
@@ -140,7 +138,7 @@ function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
-          <div className="lg:col-span-5 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-5 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Screen Schedule</h3>
             <div className="overflow-auto max-h-64">
               <table className="w-full text-xs">
@@ -171,7 +169,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Concession Purchase</h3>
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
@@ -193,7 +191,6 @@ function Dashboard() {
           </div>
 
           <div className="lg:col-span-4 flex flex-col gap-4">
-            
             {[
               { title: "Projector Room Temperature", value: "18°C", badge: "Stable", color: "green" },
               { title: "Security Status", value: "High", badge: "Check", color: "green" },
@@ -201,26 +198,24 @@ function Dashboard() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white p-4 rounded-xl shadow-md flex justify-between items-start hover:shadow-lg transition-all"
+                className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-start"
               >
                 <div>
                   <p className="text-3xl font-bold text-gray-800">{item.value}</p>
                   <p className="text-xs text-gray-500 mt-1">{item.title}</p>
                 </div>
-                <span className={`px-3 py-1 rounded text-xs bg-${item.color}-100 text-${item.color}-800`}>
+                <span className={`px-3 py-1 text-xs rounded-md bg-${item.color}-100 text-${item.color}-700`}>
                   {item.badge}
                 </span>
               </div>
             ))}
-
           </div>
-        </div>
 
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
-          {/* Retention */}
-          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Customer Retention</h3>
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
@@ -240,8 +235,7 @@ function Dashboard() {
             </div>
           </div>
 
-
-          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Footfall Analysis</h3>
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
@@ -255,7 +249,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-md">
+          <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Infra. Audit</h3>
             <div className="space-y-2 max-h-56 overflow-auto">
               {['Electricity (Light)', 'Sound', 'Projector', 'Seating Occupancy'].map((item, i) => (
