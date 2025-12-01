@@ -2,15 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './layout/Rootlayout';
 import Dashboard from './pages/Dashboard';
 import HallManagement from './pages/HallManagement';
-import InfrastructureAudit from './pages/InfrastructureAudit';
-import StaffManagement from './pages/StaffManagement';
-import InventoryManagement from './pages/InventoryManagement';
 import CostAnalysis from './pages/CostAnalysis';
-import FootfallAnalysis from './pages/FootfallAnalysis';
-import SpatialAnalysis from './pages/SpatialAnalysis';
 import ScreenScheduling from './pages/ScreenScheduling';
 import PricingStrategy from './pages/PricingStrategy';
 import Settings from './pages/Settings';
+import NotFound from './pages/Notfound';
 
 export default function App() {
   return (
@@ -21,16 +17,19 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
           
           <Route path="management">
+            <Route index element={<Dashboard />} />  
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="hall" element={<HallManagement />} />
-            <Route path="infrastructure" element={<InfrastructureAudit />} />
-            <Route path="staff" element={<StaffManagement />} />
-            <Route path="inventory" element={<InventoryManagement />} />
+            <Route path="infrastructure" element={<NotFound />} />
+            <Route path="staff" element={<NotFound />} />
+            <Route path="inventory" element={<NotFound />} />
           </Route>
+
           
           <Route path="analysis">
             <Route path="cost" element={<CostAnalysis />} />
-            <Route path="footfall" element={<FootfallAnalysis />} />
-            <Route path="spatial" element={<SpatialAnalysis />} />
+            <Route path="footfall" element={<NotFound />} />
+            <Route path="spatial" element={<NotFound />} />
           </Route>
           
           <Route path="strategy">
@@ -38,7 +37,7 @@ export default function App() {
             <Route path="pricing" element={<PricingStrategy />} />
           </Route>
           
-          <Route path="settings" element={<Settings />} />
+          <Route path="settings" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

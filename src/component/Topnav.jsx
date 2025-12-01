@@ -45,7 +45,7 @@ export default function TopNav({ darkMode, onToggleDarkMode }) {
       </div>
 
       <div className="flex items-center gap-4 ml-auto">
-        <button
+        {/* <button
           onClick={onToggleDarkMode}
           className={`p-2 rounded-lg transition-colors ${
             darkMode
@@ -55,7 +55,7 @@ export default function TopNav({ darkMode, onToggleDarkMode }) {
           aria-label="Toggle theme"
         >
           {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-        </button>
+        </button> */}
 
         <div className="relative" ref={notifRef}>
           <button

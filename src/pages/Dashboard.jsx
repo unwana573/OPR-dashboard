@@ -1,7 +1,8 @@
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
-  XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
+  XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
+  Legend
 } from 'recharts';
 
 function Dashboard() {
@@ -139,29 +140,57 @@ function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
           <div className="lg:col-span-5 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-800 text-sm mb-2">Screen Schedule</h3>
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-semibold text-gray-800 text-sm">Screen Schedule</h3>
+              <span className="text-gray-500 text-xs flex items-center gap-1 cursor-pointer">
+                Current ▼
+              </span>
+            </div>
+
             <div className="overflow-auto max-h-64">
-              <table className="w-full text-xs">
+              <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b text-gray-600">
-                    <th className="pb-1">Screen</th>
-                    <th className="pb-1">Movie</th>
-                    <th className="pb-1">Occ%</th>
+                  <tr className="text-gray-500">
+                    <th className="pb-2 font-medium text-left text-[11px]">Screen</th>
+                    <th className="pb-2 font-medium text-left text-[11px]">Movie</th>
+                    <th className="pb-2 font-medium text-right text-[11px]">Occupancy%</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {[
-                    ["S1", "Gadar 2", "10:15pm", "94%"],
-                    ["S2", "No Screening", "", "0%"],
-                    ["S3", "Jawan", "10:30pm", "98%"],
-                    ["S4", "Jawan", "9:45pm", "97%"]
+                    { screen: "S1", movie: "Gadar 2", time: "10:15 pm", occ: 94 },
+                    { screen: "S2", movie: "No Screening", time: "9:15 pm", occ: 0 },
+                    { screen: "S3", movie: "Jawan", time: "10:30 pm", occ: 98 },
+                    { screen: "S4", movie: "Jawan", time: "9:45 pm", occ: 97 },
                   ].map((row, i) => (
-                    <tr key={i} className="border-b">
-                      <td className="py-2 font-medium text-gray-700">{row[0]}</td>
-                      <td className="py-2 text-gray-700">
-                        {row[1]} <span className="text-gray-500">{row[2]}</span>
+                    <tr key={i} className="border-b border-gray-100 last:border-0">
+                      <td className="py-3">
+                        <span className="px-3 py-1 rounded-md bg-indigo-50 text-indigo-700 text-xs font-semibold">
+                          {row.screen}
+                        </span>
                       </td>
-                      <td className="py-2">{row[3]}</td>
+
+                      <td className="py-3">
+                        <div className="bg-indigo-50 p-2 rounded-md w-full">
+                          <div className="flex justify-between text-xs font-medium text-indigo-700">
+                            <span>{row.movie}</span>
+                            <span className="text-gray-500">{row.time}</span>
+                          </div>
+                          <div className="w-full bg-gray-200 h-[3px] rounded-md mt-1">
+                            <div
+                              className="h-[3px] rounded-md bg-indigo-600"
+                              style={{ width: `${row.occ}%` }}
+                            />
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="py-3 text-right">
+                        <span className="px-3 py-1 text-xs font-bold rounded-md bg-indigo-50 text-indigo-700">
+                          {row.occ}%
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -170,70 +199,148 @@ function Dashboard() {
           </div>
 
           <div className="lg:col-span-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-800 text-sm mb-2">Concession Purchase</h3>
-            <div className="h-56">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={concessionData}
-                    innerRadius="40%"
-                    outerRadius="70%"
-                    dataKey="value"
-                  >
-                    {concessionData.map((e, i) => (
-                      <Cell key={i} fill={e.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
+            
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-gray-800 text-sm">Concession Purchase</h3>
+              <span className="text-gray-500 text-xs cursor-pointer">This Week ▼</span>
+            </div>
+
+            <div className="flex items-center h-56 gap-4">
+
+              <div className="space-y-3 text-sm">
+                {concessionData.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <span
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <p className="text-gray-700">{item.name}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex-1 relative">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={concessionData}
+                      innerRadius="60%"
+                      outerRadius="90%"
+                      stroke="none"
+                      dataKey="value"
+                    >
+                      {concessionData.map((entry, index) => (
+                        <Cell key={index} fill={entry.color} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <p className="text-lg font-bold text-gray-900">₹13,494</p>
+                  <p className="text-[10px] text-gray-500 tracking-wide">Total FnB Purchase</p>
+                </div>
+              </div>
             </div>
           </div>
+
 
           <div className="lg:col-span-4 flex flex-col gap-4">
             {[
               { title: "Projector Room Temperature", value: "18°C", badge: "Stable", color: "green" },
               { title: "Security Status", value: "High", badge: "Check", color: "green" },
-              { title: "Inventory Stock", value: "46%", badge: "Refill", color: "red" },
+              { title: "Inventory Stock", value: "46%", badge: "Refill", color: "orange" },
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-start"
+                className="bg-[#F4F0FF] p-5 rounded-2xl shadow-sm border border-[#ECE6FF] flex justify-between items-center"
               >
                 <div>
-                  <p className="text-3xl font-bold text-gray-800">{item.value}</p>
-                  <p className="text-xs text-gray-500 mt-1">{item.title}</p>
+                  <p className="text-4xl font-semibold text-gray-900">{item.value}</p>
+                  <p className="text-sm text-gray-600 mt-1">{item.title}</p>
                 </div>
-                <span className={`px-3 py-1 text-xs rounded-md bg-${item.color}-100 text-${item.color}-700`}>
+            
+                <span
+                  className={`
+                    px-3.5 py-1.5 text-xs font-medium rounded-full
+                    ${
+                      item.color === "green"
+                        ? "bg-green-100 text-green-700"
+                        : item.color === "orange"
+                        ? "bg-orange-100 text-orange-700"
+                        : "bg-gray-100 text-gray-700"
+                    }
+                  `}
+                >
                   {item.badge}
                 </span>
               </div>
             ))}
-          </div>
+        </div>
+
 
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
           <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-            <h3 className="font-semibold text-gray-800 text-sm mb-2">Customer Retention</h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-semibold text-gray-800 text-sm">Customer Retention Metrics</h3>
+              <span className="text-gray-500 text-xs">This Week</span>
+            </div>
+
             <div className="h-56">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
+                  
                   <Pie
                     data={retentionData}
-                    outerRadius="70%"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius="75%"
                     dataKey="value"
+                    label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                      const RADIAN = Math.PI / 180;
+                      const radius = innerRadius + (outerRadius - innerRadius) * 1.15;
+                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                      return (
+                        <text
+                          x={x}
+                          y={y}
+                          fill="#333"
+                          fontSize="11"
+                          textAnchor={x > cx ? "start" : "end"}
+                          dominantBaseline="central"
+                        >
+                          {`${(percent * 100).toFixed(1)}%`}
+                        </text>
+                      );
+                    }}
                   >
                     {retentionData.map((e, i) => (
                       <Cell key={i} fill={e.color} />
                     ))}
                   </Pie>
-                  <Tooltip />
+
+                  <Tooltip formatter={(val) => `${val}%`} />
+
+                  <Legend
+                    layout="vertical"
+                    verticalAlign="middle"
+                    align="right"
+                    formatter={(value) => {
+                      const item = retentionData.find((d) => d.name === value);
+                      return `${value} (${item.value}%)`;
+                    }}
+                  />
+
                 </PieChart>
               </ResponsiveContainer>
             </div>
           </div>
+
 
           <div className="lg:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="font-semibold text-gray-800 text-sm mb-2">Footfall Analysis</h3>
