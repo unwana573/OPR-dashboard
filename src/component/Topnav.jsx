@@ -57,10 +57,10 @@ export default function TopNav({ darkMode, onToggleDarkMode }) {
           {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button> */}
 
-        <div className="relative" ref={notifRef}>
+      <div className="relative" ref={notifRef}>
           <button
             onClick={() => setOpenNotif(!openNotif)}
-            className={`relative p-2 ${
+            className={`relative p-2 hover:scale-105 transition ${
               darkMode ? "text-gray-300" : "text-gray-600"
             }`}
           >
@@ -70,59 +70,59 @@ export default function TopNav({ darkMode, onToggleDarkMode }) {
 
           {openNotif && (
             <div
-              className={`absolute right-0 mt-2 w-80 rounded-lg shadow-lg border z-50 ${
-                darkMode
-                  ? "bg-gray-800 border-gray-700"
-                  : "bg-white border-gray-200"
+              className={`absolute right-0 mt-3 w-84 rounded-xl shadow-lg border z-50 overflow-hidden ${
+                darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
               }`}
             >
-              <div className="flex justify-between px-4 py-2 text-sm border-b dark:border-gray-700">
-                <button className="text-blue-500">✔ Mark all read</button>
-                <button className="text-red-500">✖ Clear All</button>
+
+              <div className="flex justify-between items-center px-4 py-2 text-xs font-semibold border-b">
+                <button className="text-blue-500 hover:underline">✔ Mark all read</button>
+                <button className="text-red-500 hover:underline">✖ Clear All</button>
               </div>
 
-              <div className="max-h-80 overflow-y-auto divide-y dark:divide-gray-700 text-sm">
-                <div className="flex justify-between px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    ❗ <span className="font-semibold">Gadar 2</span> releases next week, 25 Sept '23.
+              <div className="max-h-80 overflow-y-auto text-sm divide-y">
+                
+                <div className="flex justify-between items-start px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                  <p className="text-gray-700 ">
+                    <span className="text-red-500 font-bold">!</span>{" "}
+                    <span className="font-semibold text-red-600">Gadar 2</span> releases next week, 25 Sept’ 23.
                   </p>
-                  <span className="text-gray-500 text-xs">01:09 PM</span>
+                  <span className="text-gray-500 text-xs whitespace-nowrap">01:09 PM</span>
                 </div>
 
-                <div className="flex justify-between px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    ❗ <span className="font-semibold">JAWAN</span> releases next week, 25 Sept '23.
+                <div className="flex justify-between items-start px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                  <p className="text-gray-700 ">
+                    <span className="text-red-500 font-bold">!</span>{" "}
+                    <span className="font-semibold text-red-600">JAWAN</span> releases next week, 25 Sept’ 23.
                   </p>
-                  <span className="text-gray-500 text-xs">10:38 AM</span>
+                  <span className="text-gray-500 text-xs whitespace-nowrap">10:38 AM</span>
                 </div>
 
-                <div className="flex justify-between px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40">
-                  <p className="text-indigo-600 dark:text-indigo-400 font-semibold">
-                    DREAM GIRL 2
+                <div className="flex justify-between items-start px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                  <p className="font-semibold text-blue-600 dark:text-blue-400">
+                    DREAM GIRL 2 releases next week, 15 Sept’ 23.
                   </p>
-                  <span className="text-gray-500 text-xs">11/06/22</span>
+                  <span className="text-gray-500 text-xs whitespace-nowrap">11/06/22</span>
                 </div>
 
-                <div className="flex justify-between px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Concession Area requires staff
-                  </p>
-                  <span className="text-gray-500 text-xs">10/06/22</span>
+                <div className="flex justify-between items-start px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                  <p className="text-gray-700 ">Concession Area requires staff</p>
+                  <span className="text-gray-500 text-xs whitespace-nowrap">10/06/22</span>
                 </div>
 
-                <div className="flex justify-between px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    ❗ Projector S2 heating up
+                <div className="flex justify-between items-start px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/40 cursor-pointer">
+                  <p className="text-gray-700 ">
+                    <span className="text-red-500 font-bold">!</span> Projector S2 heating up
                   </p>
-                  <span className="text-gray-500 text-xs">07/06/22</span>
+                  <span className="text-gray-500 text-xs whitespace-nowrap">07/06/22</span>
                 </div>
               </div>
 
               <button
-                className={`w-full py-3 text-center text-sm font-medium rounded-b-lg ${
+                className={`w-full py-3 text-center text-sm font-semibold ${
                   darkMode
                     ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                    : "bg-gray-50 text-blue-600 hover:bg-gray-100"
                 }`}
               >
                 View All Notifications
